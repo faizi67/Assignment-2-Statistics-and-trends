@@ -101,4 +101,63 @@ specific_indicators = ['Nitrous oxide emissions (thousand metric tons of CO2 equ
 extracted_years_data, extracted_countries_data = extract_specific_data(specific_indicators, specific_countries, years_data, countries_data)
 
 
+# In[4]:
+
+
+indicators_shortname = {
+        'Nitrous oxide emissions (thousand metric tons of CO2 equivalent)': 'Nitrous Oxide Emission',
+       'Methane emissions (kt of CO2 equivalent)': 'Methane Emission',
+       'Total greenhouse gas emissions (kt of CO2 equivalent)': 'Total Greenhouse Gas Emission',
+        'CO2 emissions (kt)': 'CO2 Emission'
+}
+
+# Changing Indicator Names
+extracted_years_data["Indicator Name"] = extracted_years_data["Indicator Name"].map(indicators_shortname)
+
+
+# In[7]:
+
+
+# Statistical Properties
+extracted_countries_data.describe()
+
+
+# In[5]:
+
+
+# Create a pivot table with Country Name as index and Indicator Name as columns
+temp = pd.pivot_table(extracted_years_data, values="2019", index="Country Name", columns=["Indicator Name"])
+
+# Set up the figure and subplots
+plt.figure(figsize=(16, 10))
+
+# First subplot: CO2 Emission in 2019
+plt.subplot(221)
+sns.barplot(x=temp.index, y=temp["CO2 Emission"])
+plt.title("CO2 Emission of Countries by 2019")
+plt.xticks(rotation=8)  # Rotate x-axis labels for readability
+plt.xlabel("")  # Remove x-axis label
+
+# Second subplot: Methane Emission in 2019
+plt.subplot(222)
+sns.barplot(x=temp.index, y=temp["Methane Emission"])
+plt.title("Methane Emission of Countries by 2019")
+plt.xticks(rotation=8)  # Rotate x-axis labels for readability
+plt.xlabel("")  # Remove x-axis label
+
+# Third subplot: Nitrous Oxide Emission in 2019
+plt.subplot(223)
+sns.barplot(x=temp.index, y=temp["Nitrous Oxide Emission"])
+plt.title("Nitrous Oxide Emission of Countries by 2019")
+plt.xticks(rotation=8)  # Rotate x-axis labels for readability
+
+# Fourth subplot: Total Greenhouse Gas Emission in 2019
+plt.subplot(224)
+sns.barplot(x=temp.index, y=temp["Total Greenhouse Gas Emission"])
+plt.title("Total Greenhouse Gas Emission of Countries by 2019")
+plt.xticks(rotation=8)  # Rotate x-axis labels for readability
+
+# Display the plots
+plt.show()
+
   
