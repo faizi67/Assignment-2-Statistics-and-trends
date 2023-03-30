@@ -160,4 +160,40 @@ plt.xticks(rotation=8)  # Rotate x-axis labels for readability
 # Display the plots
 plt.show()
 
+
+# In[6]:
+
+
+# Nitrous Oxide Emission trends
+# Extract Nitrous Oxide Emission data for the specified countries
+temp = extracted_countries_data.loc[:, (specific_countries, "Nitrous oxide emissions (thousand metric tons of CO2 equivalent)")]
+temp.columns = [i[0] for i in temp.columns]  # Simplify column names
+# Plot Nitrous Oxide Emission trends for the last 30 years
+temp.iloc[30:, :].plot(kind="line", figsize=(8, 4), xlabel="Years", ylabel="Nitrous Oxide Emissions", title="Nitrous Oxide Emission over the Years")
+
+# Methane Emission trends
+# Extract Methane Emission data for the specified countries
+temp = extracted_countries_data.loc[:, (specific_countries, "Methane emissions (kt of CO2 equivalent)")]
+temp.columns = [i[0] for i in temp.columns]  # Simplify column names
+# Plot Methane Emission trends for the last 30 years
+temp.iloc[30:, :].plot(kind="line", figsize=(8, 4), xlabel="Years", ylabel="Methane Emissions", title="Methane Emission over the Years")
+
+# Total Greenhouse Gas Emission trends
+# Extract Total Greenhouse Gas Emission data for the specified countries
+temp = extracted_countries_data.loc[:, (specific_countries, "Total greenhouse gas emissions (kt of CO2 equivalent)")]
+temp.columns = [i[0] for i in temp.columns]  # Simplify column names
+# Plot Total Greenhouse Gas Emission trends for the last 30 years
+temp.iloc[30:, :].plot(kind="line", figsize=(8, 4), xlabel="Years", ylabel="Total greenhouse gas Emissions", title="Total greenhouse gas Emission over the Years")
+
+# CO2 Emission trends
+# Extract CO2 Emission data for the specified countries
+temp = extracted_countries_data.loc[:, (specific_countries, "CO2 emissions (kt)")]
+temp.columns = [i[0] for i in temp.columns]  # Simplify column names
+# Plot CO2 Emission trends for the last 30 years
+temp.iloc[30:, :].plot(kind="line", figsize=(8, 4), xlabel="Years", ylabel="CO2 Emissions", title="CO2 Emission over the Years")
+
+# Display the plots
+plt.show()
+
+
   
