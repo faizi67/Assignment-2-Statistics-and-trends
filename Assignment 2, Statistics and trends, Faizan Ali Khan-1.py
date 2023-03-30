@@ -196,4 +196,55 @@ temp.iloc[30:, :].plot(kind="line", figsize=(8, 4), xlabel="Years", ylabel="CO2 
 plt.show()
 
 
+# In[7]:
+
+
+corr = extracted_years_data.pivot(index='Country Name', columns='Indicator Name', values='2018').corr()
+
+# Create a heatmap of correlations between indicators
+sns.heatmap(corr, cmap='gist_yarg', annot=True, fmt='.2f')
+plt.title('Correlations between Climate Indicators')
+plt.show()
+
+
+# In[8]:
+
+
+# Filter the data for Methane emissions
+temp = years_data[years_data['Indicator Name'] == "Methane emissions (kt of CO2 equivalent)"]
+
+# Create a choropleth map of Methane emissions in 2019
+fig = px.choropleth(temp, locations='Country Code', color='2019', 
+                    title='Methane Emission',
+                    color_continuous_scale=px.colors.sequential.Agsunset)
+fig.show()
+
+# Filter the data for Nitrous oxide emissions
+temp = years_data[years_data['Indicator Name'] == "Nitrous oxide emissions (thousand metric tons of CO2 equivalent)"]
+
+# Create a choropleth map of Nitrous oxide emissions in 2019
+fig = px.choropleth(temp, locations='Country Code', color='2019', 
+                    title='Nitrous Oxide Emissions',
+                    color_continuous_scale=px.colors.sequential.Agsunset)
+fig.show()
+
+# Filter the data for Total greenhouse gas emissions
+temp = years_data[years_data['Indicator Name'] == "Total greenhouse gas emissions (kt of CO2 equivalent)"]
+
+# Create a choropleth map of Total greenhouse gas emissions in 2019
+fig = px.choropleth(temp, locations='Country Code', color='2019', 
+                    title='Total Greenhouse Gas Emission',
+                    color_continuous_scale=px.colors.sequential.Agsunset)
+fig.show()
+
+# Filter the data for CO2 emissions
+temp = years_data[years_data['Indicator Name'] == "CO2 emissions (kt)"]
+
+# Create a choropleth map of CO2 emissions in 2019
+fig = px.choropleth(temp, locations='Country Code', color='2019', 
+                    title='CO2 Emission',
+                    color_continuous_scale=px.colors.sequential.Agsunset)
+fig.show()
+
+
   
